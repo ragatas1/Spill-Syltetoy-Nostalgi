@@ -525,18 +525,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spiller1
       objectReference: {fileID: 0}
-    - target: {fileID: 7696461025412840837, guid: db329423c84cae8498d7fa1f3e6ae350, type: 3}
-      propertyPath: runSpeed
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696461025412840837, guid: db329423c84cae8498d7fa1f3e6ae350, type: 3}
-      propertyPath: coyoteTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7696461025412840837, guid: db329423c84cae8498d7fa1f3e6ae350, type: 3}
-      propertyPath: luftKontroll
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8679243327280368508, guid: db329423c84cae8498d7fa1f3e6ae350, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7809
