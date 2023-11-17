@@ -177,7 +177,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 80
+  runSpeed: 200
   jumpingPower: 80
+  luftKontroll: 1
   rb: {fileID: 1312668955657179448}
   groundCheck: {fileID: 8495670114977270176}
   groundLayer:
@@ -186,7 +188,7 @@ MonoBehaviour:
   tyngdekraft: 20
   hoppeTyngdekraft: 10
   bufferTid: 0.2
-  coyoteTime: 1
+  coyoteTime: 0.2
 --- !u!50 &1312668955657179448
 Rigidbody2D:
   serializedVersion: 4

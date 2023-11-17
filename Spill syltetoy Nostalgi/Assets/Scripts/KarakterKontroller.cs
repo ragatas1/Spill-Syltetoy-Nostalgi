@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class movement : MonoBehaviour
+public class KarakterKontroller : MonoBehaviour
 {
     private float horizontal;
+    private float kontrollerHorizontal;
+    private float lagretHorizontal;
     public float speed;
+    public float runSpeed;
     public float jumpingPower;
     private bool isFacingRight = true;
+    private float iLufta;
+    public float luftKontroll;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -17,31 +22,50 @@ public class movement : MonoBehaviour
     [SerializeField] private float hoppeTyngdekraft;
     [SerializeField] private float bufferTid;
     [SerializeField] private float coyoteTime;
+    private float coyoteTimer;
     private bool falleTyngdkraft;
     private bool hoppe;
-    private bool paBakken;
+    private bool lope;
 
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
+        //denne tar inn kontrollerinputet
+        kontrollerHorizontal = Input.GetAxisRaw("Horizontal");
 
+        //denne fikser luftkontroll
+        if (coyoteTimer>0)
+        {
+
+            horizontal = kontrollerHorizontal;
+            lagretHorizontal = kontrollerHorizontal;
+        }
+        else
+        {
+            horizontal = ((kontrollerHorizontal*luftKontroll) + (lagretHorizontal/luftKontroll))/2;
+        }
+
+        //denne starter coroutinen til hoppebufring
         if (Input.GetButtonDown("Jump"))
         {
             StartCoroutine(Hoppe());
         }
-        if (IsGrounded()) 
+
+        //denne fikser coyote time
+        if (IsGrounded())
         {
-            paBakken = true;
+            coyoteTimer = coyoteTime;
         }
         else
         {
-            StartCoroutine (PaBakken());
+            coyoteTimer = coyoteTimer -1*Time.deltaTime;
         }
-        if (hoppe == true && paBakken == true)
+        //denne hopper
+        if (hoppe == true && coyoteTimer>0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
 
+        //denne gjør tyngedekraften annerledes når du prøver å hoppe
         if (rb.velocity.y > 0 && Input.GetButton("Jump"))
         {
             falleTyngdkraft = true;
@@ -50,6 +74,8 @@ public class movement : MonoBehaviour
         {
             falleTyngdkraft = false;
         }
+
+        //denne endrer tyngedekraften
         if (falleTyngdkraft == true)
         {
             rb.gravityScale = hoppeTyngdekraft;
@@ -58,17 +84,39 @@ public class movement : MonoBehaviour
         {
             rb.gravityScale = tyngdekraft;
         }
-
+        //denne gjør at man ikke kan slutte å løpe hvis man er i lufta
+        if (coyoteTimer > 0)
+        {
+            if (Input.GetButton("Run"))
+            {
+                lope = true;
+            }
+            else 
+            {
+                lope = false; 
+            }
+        }
+        //denne gjør at du snur deg etter hvilken vei du går
         flip();
     }
     private void FixedUpdate () 
     {
-      rb.velocity = new Vector2 (horizontal * speed, rb.velocity.y);
+        //denne gjør at du kan bevege deg
+        rb.velocity = new Vector2 (horizontal * speed, rb.velocity.y);
+
+        //denne gjør at du går fortere når du trykker på løpeknappen
+        if (lope == true)
+        {
+            rb.velocity = new Vector2(horizontal * runSpeed, rb.velocity.y);
+        }
     }
+    //denne sjekker at du er på bakken
     public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
+
+    //denne flipper deg
     private void flip()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
@@ -80,16 +128,13 @@ public class movement : MonoBehaviour
             transform.localScale = localScale;
         }
     }
+
+    //dette er coroutinen for hoppebufring
     private IEnumerator Hoppe()
     {
         hoppe = true;
         yield return new WaitForSeconds(bufferTid);
         hoppe = false;
-    }
-    private IEnumerator PaBakken()
-    {
-        yield return new WaitForSeconds(coyoteTime);
-        paBakken = false;
-        Debug.Log("coyote ferdig");
+        coyoteTimer = 0;
     }
 }
