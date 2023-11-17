@@ -12,21 +12,29 @@ public class KarakterKontroller : MonoBehaviour
     public float runSpeed;
     public float jumpingPower;
     private bool isFacingRight = true;
-    private float iLufta;
     public float luftKontroll;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    public GameObject Kamera;
+    public Transform kameraTransform;
     [SerializeField] private float tyngdekraft;
     [SerializeField] private float hoppeTyngdekraft;
     [SerializeField] private float bufferTid;
     [SerializeField] private float coyoteTime;
+    [SerializeField] private float lookAhead;
     private float coyoteTimer;
     private bool falleTyngdkraft;
     private bool hoppe;
     private bool lope;
 
+    private void Start()
+    {
+        //denne finner kameraet
+        Kamera = GameObject.FindGameObjectWithTag("Kamera");
+        kameraTransform = Kamera.GetComponent<Transform>();
+    }
     void Update()
     {
         //denne tar inn kontrollerinputet
@@ -96,6 +104,7 @@ public class KarakterKontroller : MonoBehaviour
                 lope = false; 
             }
         }
+        kameraTransform.position = new Vector3(transform.position.x+lookAhead, 0,-10);
         //denne gjør at du snur deg etter hvilken vei du går
         flip();
     }
