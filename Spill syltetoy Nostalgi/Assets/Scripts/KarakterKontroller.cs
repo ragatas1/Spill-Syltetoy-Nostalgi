@@ -8,11 +8,16 @@ public class KarakterKontroller : MonoBehaviour
     private float horizontal;
     private float kontrollerHorizontal;
     private float lagretHorizontal;
-    public float speed;
+    private float speed;
+    public float topSpeed;
     public float runSpeed;
     public float jumpingPower;
     private bool isFacingRight = true;
     public float luftKontroll;
+    public float akselrasjon;
+    public float deAkselrasjon;
+    private float akselrasjonsTimer;
+    private float deAkselrasjonsTimer;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -28,6 +33,7 @@ public class KarakterKontroller : MonoBehaviour
     private bool falleTyngdkraft;
     private bool hoppe;
     private bool lope;
+    public bool fullLuftKontroll;
 
     private void Start()
     {
@@ -41,15 +47,22 @@ public class KarakterKontroller : MonoBehaviour
         kontrollerHorizontal = Input.GetAxisRaw("Horizontal");
 
         //denne fikser luftkontroll
-        if (coyoteTimer>0)
+        if (fullLuftKontroll == false)
         {
+            if (coyoteTimer > 0)
+            {
 
-            horizontal = kontrollerHorizontal;
-            lagretHorizontal = kontrollerHorizontal;
+                horizontal = kontrollerHorizontal;
+                lagretHorizontal = kontrollerHorizontal;
+            }
+            else
+            {
+                horizontal = ((kontrollerHorizontal * luftKontroll) + (lagretHorizontal / luftKontroll)) / 2;
+            }
         }
         else
         {
-            horizontal = ((kontrollerHorizontal*luftKontroll) + (lagretHorizontal/luftKontroll))/2;
+            horizontal = kontrollerHorizontal;
         }
 
         //denne starter coroutinen til hoppebufring
@@ -111,7 +124,26 @@ public class KarakterKontroller : MonoBehaviour
     private void FixedUpdate () 
     {
         //denne gjør at du kan bevege deg
+        speed = topSpeed;
         rb.velocity = new Vector2 (horizontal * speed, rb.velocity.y);
+
+        //denne er ikke ferdig, men skal fikse akselrasjon og deakselrasjon
+        //if (horizontal != 0) 
+        //{
+        //    if (speed <= topSpeed)
+        //    {
+        //        speed = speed +1*Time.deltaTime*akselrasjon;
+        //    }
+        //    else
+        //    {
+        //        Debug.Log("top");
+        //        speed = topSpeed;
+        //    }
+        //}
+        //else
+        //{
+        //    speed = speed -1*Time.deltaTime*deAkselrasjon;
+        //}
 
         //denne gjør at du går fortere når du trykker på løpeknappen
         if (lope == true)
