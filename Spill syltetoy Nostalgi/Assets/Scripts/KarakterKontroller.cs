@@ -6,18 +6,16 @@ using UnityEngine.SceneManagement;
 public class KarakterKontroller : MonoBehaviour
 {
     private float horizontal;
+    private float lagretBevegelsesVerdi;
     private float kontrollerHorizontal;
     private float lagretHorizontal;
     private float speed;
     public float topSpeed;
-    public float runSpeed;
     public float jumpingPower;
     private bool isFacingRight = true;
     public float luftKontroll;
     public float akselrasjon;
     public float deAkselrasjon;
-    private float akselrasjonsTimer;
-    private float deAkselrasjonsTimer;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -32,7 +30,6 @@ public class KarakterKontroller : MonoBehaviour
     private float coyoteTimer;
     private bool falleTyngdkraft;
     private bool hoppe;
-    private bool lope;
     public bool fullLuftKontroll;
 
     private void Start()
@@ -105,18 +102,6 @@ public class KarakterKontroller : MonoBehaviour
         {
             rb.gravityScale = tyngdekraft;
         }
-        //denne gjør at man ikke kan slutte å løpe hvis man er i lufta
-        if (coyoteTimer > 0)
-        {
-            if (Input.GetButton("Run"))
-            {
-                lope = true;
-            }
-            else 
-            {
-                lope = false; 
-            }
-        }
         kameraTransform.position = new Vector3(transform.position.x+lookAhead, 0,-10);
         //denne gjør at du snur deg etter hvilken vei du går
         flip();
@@ -124,31 +109,32 @@ public class KarakterKontroller : MonoBehaviour
     private void FixedUpdate () 
     {
         //denne gjør at du kan bevege deg
-        speed = topSpeed;
         rb.velocity = new Vector2 (horizontal * speed, rb.velocity.y);
+        //rb.velocity = new Vector2(lagretBevegelsesVerdi, rb.velocity.y);
 
         //denne er ikke ferdig, men skal fikse akselrasjon og deakselrasjon
-        //if (horizontal != 0) 
-        //{
-        //    if (speed <= topSpeed)
-        //    {
-        //        speed = speed +1*Time.deltaTime*akselrasjon;
-        //    }
-        //    else
-        //    {
-        //        Debug.Log("top");
-        //        speed = topSpeed;
-        //    }
-        //}
-        //else
-        //{
-        //    speed = speed -1*Time.deltaTime*deAkselrasjon;
-        //}
-
-        //denne gjør at du går fortere når du trykker på løpeknappen
-        if (lope == true)
+        if (horizontal != 0) 
         {
-            rb.velocity = new Vector2(horizontal * runSpeed, rb.velocity.y);
+            if (speed <= topSpeed)
+            {
+                speed = speed +1*Time.deltaTime*topSpeed*akselrasjon;
+            }
+            else
+            {
+                Debug.Log("top");
+                speed = topSpeed;
+            }
+        }
+        else
+        {
+            if (speed > 0)
+            {
+                speed = speed - 1 * Time.deltaTime * topSpeed * deAkselrasjon;
+            }
+            else 
+            {
+                speed = 0; 
+            }
         }
     }
     //denne sjekker at du er på bakken
