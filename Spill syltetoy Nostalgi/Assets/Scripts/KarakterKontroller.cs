@@ -6,16 +6,17 @@ using UnityEngine.SceneManagement;
 public class KarakterKontroller : MonoBehaviour
 {
     private float horizontal;
-    private float lagretBevegelsesVerdi;
     private float kontrollerHorizontal;
+    public Vector2 velocity;
     private float lagretHorizontal;
-    private float speed;
+    public float speed;
     public float topSpeed;
     public float jumpingPower;
     private bool isFacingRight = true;
     public float luftKontroll;
     public float akselrasjon;
     public float deAkselrasjon;
+    public float friction;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -102,41 +103,24 @@ public class KarakterKontroller : MonoBehaviour
         {
             rb.gravityScale = tyngdekraft;
         }
+
+        //denne flytter på kameraet
         kameraTransform.position = new Vector3(transform.position.x+lookAhead, 0,-10);
         //denne gjør at du snur deg etter hvilken vei du går
         flip();
-    }
-    private void FixedUpdate () 
-    {
-        //denne gjør at du kan bevege deg
-        rb.velocity = new Vector2 (horizontal * speed, rb.velocity.y);
-        //rb.velocity = new Vector2(lagretBevegelsesVerdi, rb.velocity.y);
+        
+        //denne fikser bevegelse, med akselrasjon og deakselrasjon
+        if (Input.GetAxisRaw("Horizontal") == 0)
+        {
+            velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.deltaTime);
+        }
+        velocity.x += Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+        velocity.x = Mathf.Clamp(velocity.x, -topSpeed, topSpeed);
+        velocity.y = rb.velocity.y;
+        rb.velocity = velocity;
 
-        //denne er ikke ferdig, men skal fikse akselrasjon og deakselrasjon
-        if (horizontal != 0) 
-        {
-            if (speed <= topSpeed)
-            {
-                speed = speed +1*Time.deltaTime*topSpeed*akselrasjon;
-            }
-            else
-            {
-                Debug.Log("top");
-                speed = topSpeed;
-            }
-        }
-        else
-        {
-            if (speed > 0)
-            {
-                speed = speed - 1 * Time.deltaTime * topSpeed * deAkselrasjon;
-            }
-            else 
-            {
-                speed = 0; 
-            }
-        }
     }
+
     //denne sjekker at du er på bakken
     public bool IsGrounded()
     {
