@@ -14,8 +14,6 @@ public class KarakterKontroller : MonoBehaviour
     public float jumpingPower;
     private bool isFacingRight = true;
     public float luftKontroll;
-    public float akselrasjon;
-    public float deAkselrasjon;
     public float friction;
 
     [SerializeField] private Rigidbody2D rb;
