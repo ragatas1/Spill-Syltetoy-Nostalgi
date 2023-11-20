@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ReachEndScript : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class ReachEndScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        text.SetActive(true);
         Debug.Log(":)");
     }
 }
