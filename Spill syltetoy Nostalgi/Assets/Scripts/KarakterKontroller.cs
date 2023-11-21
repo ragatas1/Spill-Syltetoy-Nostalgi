@@ -16,7 +16,7 @@ public class KarakterKontroller : MonoBehaviour
     public float luftKontroll;
     public float friction;
     public float lowerDeadZone;
-    private float curentKameraPosisjon;
+    public float curentKameraPosisjon;
     public float lookUp;
 
     [SerializeField] private Rigidbody2D rb;
@@ -113,13 +113,16 @@ public class KarakterKontroller : MonoBehaviour
 
         if (IsGrounded())
         {
-            if (groundLayer == 8)
+            if (curentKameraPosisjon - transform.position.y < 5 || transform.position.y - curentKameraPosisjon < 5)
             {
-                curentKameraPosisjon = transform.position.y;
-            }
-            else
-            {
-                curentKameraPosisjon = transform.position.y + lookUp;
+                if (curentKameraPosisjon > transform.position.y)
+                {
+                    curentKameraPosisjon = curentKameraPosisjon - 100 * Time.deltaTime;
+                }
+                else
+                {
+                    curentKameraPosisjon = curentKameraPosisjon + 100 * Time.deltaTime;
+                }
             }
         }
 
