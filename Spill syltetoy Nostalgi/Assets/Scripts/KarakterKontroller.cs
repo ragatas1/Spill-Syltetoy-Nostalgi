@@ -16,6 +16,8 @@ public class KarakterKontroller : MonoBehaviour
     public float luftKontroll;
     public float friction;
     public float lowerDeadZone;
+    private float curentKameraPosisjon;
+    public float lookUp;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -109,8 +111,20 @@ public class KarakterKontroller : MonoBehaviour
             Do();
         }
 
+        if (IsGrounded())
+        {
+            if (groundLayer == 8)
+            {
+                curentKameraPosisjon = transform.position.y;
+            }
+            else
+            {
+                curentKameraPosisjon = transform.position.y + lookUp;
+            }
+        }
+
         //denne flytter på kameraet
-        kameraTransform.position = new Vector3(transform.position.x+lookAhead, 0,-10);
+        kameraTransform.position = new Vector3(transform.position.x+lookAhead, curentKameraPosisjon,-10);
         
         //denne gjør at du snur deg etter hvilken vei du går
         flip();

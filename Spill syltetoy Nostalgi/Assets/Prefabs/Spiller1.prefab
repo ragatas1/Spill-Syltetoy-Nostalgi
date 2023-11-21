@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 469571990793283799}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.9, z: 0}
+  m_LocalPosition: {x: 0, y: -4.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -177,10 +177,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7cb9f6a0a4a02488c745c7212a7afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
   speed: 80
-  runSpeed: 200
+  topSpeed: 0
   jumpingPower: 80
   luftKontroll: 2
+  friction: 0
+  lowerDeadZone: 0
+  lookUp: 0
   rb: {fileID: 1312668955657179448}
   groundCheck: {fileID: 8495670114977270176}
   groundLayer:
@@ -193,6 +197,7 @@ MonoBehaviour:
   bufferTid: 0.2
   coyoteTime: 0.2
   lookAhead: 30
+  fullLuftKontroll: 0
 --- !u!50 &1312668955657179448
 Rigidbody2D:
   serializedVersion: 4
