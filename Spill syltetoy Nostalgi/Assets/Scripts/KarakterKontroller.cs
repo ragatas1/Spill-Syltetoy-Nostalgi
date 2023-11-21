@@ -15,6 +15,7 @@ public class KarakterKontroller : MonoBehaviour
     private bool isFacingRight = true;
     public float luftKontroll;
     public float friction;
+    public float lowerDeadZone;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -102,8 +103,15 @@ public class KarakterKontroller : MonoBehaviour
             rb.gravityScale = tyngdekraft;
         }
 
+        //denne fikser deadzone
+        if (transform.position.y < lowerDeadZone)
+        {
+            Do();
+        }
+
         //denne flytter på kameraet
         kameraTransform.position = new Vector3(transform.position.x+lookAhead, 0,-10);
+        
         //denne gjør at du snur deg etter hvilken vei du går
         flip();
         
@@ -119,6 +127,14 @@ public class KarakterKontroller : MonoBehaviour
 
     }
 
+    //denne gjør at du dør når du kræsjer i farelayer
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 7)
+        {
+            Do();
+        }
+    }
     //denne sjekker at du er på bakken
     public bool IsGrounded()
     {
@@ -145,5 +161,11 @@ public class KarakterKontroller : MonoBehaviour
         yield return new WaitForSeconds(bufferTid);
         hoppe = false;
         coyoteTimer = 0;
+    }
+
+    //denne dreper deg
+    private void Do()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
     }
 }
