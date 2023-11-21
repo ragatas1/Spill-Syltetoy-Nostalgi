@@ -34,7 +34,7 @@ public class TimerScript : MonoBehaviour
 		}
 		else
 		{
-			if (count > PlayerPrefs.GetFloat("HighScore", 0))
+			if (count < PlayerPrefs.GetFloat("HighScore", 0))
 			{
 				PlayerPrefs.SetFloat("HighScore", count);
 				OppdaterHighscore();
