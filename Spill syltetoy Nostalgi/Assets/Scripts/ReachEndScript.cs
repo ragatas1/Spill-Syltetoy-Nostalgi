@@ -6,10 +6,11 @@ using TMPro;
 public class ReachEndScript : MonoBehaviour
 {
     public GameObject text;
+    public TimerScript timer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        timer.vant = false;
     }
 
     // Update is called once per frame
@@ -22,5 +23,6 @@ public class ReachEndScript : MonoBehaviour
     {
         text.SetActive(true);
         Debug.Log(":)");
+        timer.vant = true;
     }
 }

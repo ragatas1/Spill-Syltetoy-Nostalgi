@@ -110,21 +110,21 @@ public class KarakterKontroller : MonoBehaviour
         {
             Do();
         }
-
-        if (IsGrounded())
-        {
-            if (curentKameraPosisjon - transform.position.y < 5 || transform.position.y - curentKameraPosisjon < 5)
-            {
-                if (curentKameraPosisjon > transform.position.y)
-                {
-                    curentKameraPosisjon = curentKameraPosisjon - 100 * Time.deltaTime;
-                }
-                else
-                {
-                    curentKameraPosisjon = curentKameraPosisjon + 100 * Time.deltaTime;
-                }
-            }
-        }
+        curentKameraPosisjon = transform.position.y;
+        //if (IsGrounded())
+        //{
+        //    if (curentKameraPosisjon - transform.position.y < 5 || transform.position.y - curentKameraPosisjon < 5)
+        //    {
+        //        if (curentKameraPosisjon > transform.position.y)
+        //        {
+        //            curentKameraPosisjon = curentKameraPosisjon - 100 * Time.deltaTime;
+        //        }
+        //        else
+        //        {
+        //            curentKameraPosisjon = curentKameraPosisjon + 100 * Time.deltaTime;
+        //        }
+        //    }
+        //}
 
         //denne flytter på kameraet
         kameraTransform.position = new Vector3(transform.position.x+lookAhead, curentKameraPosisjon,-10);

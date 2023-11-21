@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Mathematics;
 
 public class TimerScript : MonoBehaviour
 {
 	public TextMeshProUGUI timerText;
 
 	private float secondsCount;
+	private float count;
 	private int minuteCount;
+	public bool vant;
 	
 
 	void Update()
@@ -20,13 +23,11 @@ public class TimerScript : MonoBehaviour
 	public void UpdateTimerUI()
 	{
 		//set timer UI
-		secondsCount += Time.deltaTime;
-		timerText.text = minuteCount + "m:" + (int)secondsCount + "s";
-		if (secondsCount >= 60)
+		if (vant == false)
 		{
-			minuteCount++;
-			secondsCount = 0;
+			secondsCount += Time.deltaTime;
+			count = Mathf.Round(secondsCount * 10f) * 0.1f;
+			timerText.text = count.ToString();
 		}
-		
-	}
+    }
 }
