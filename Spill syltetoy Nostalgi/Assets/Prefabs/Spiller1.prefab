@@ -178,13 +178,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
-  speed: 80
-  topSpeed: 0
+  speed: 40
+  topSpeed: 80
   jumpingPower: 80
   luftKontroll: 2
-  friction: 0
-  lowerDeadZone: 0
-  lookUp: 0
+  friction: 40
+  lowerDeadZone: -120
+  curentKameraPosisjon: 0
+  lookUp: 20
   rb: {fileID: 1312668955657179448}
   groundCheck: {fileID: 8495670114977270176}
   groundLayer:
@@ -192,12 +193,12 @@ MonoBehaviour:
     m_Bits: 64
   Kamera: {fileID: 0}
   kameraTransform: {fileID: 0}
-  tyngdekraft: 20
-  hoppeTyngdekraft: 10
+  tyngdekraft: 35
+  hoppeTyngdekraft: 15
   bufferTid: 0.2
   coyoteTime: 0.2
   lookAhead: 30
-  fullLuftKontroll: 0
+  fullLuftKontroll: 1
 --- !u!50 &1312668955657179448
 Rigidbody2D:
   serializedVersion: 4
