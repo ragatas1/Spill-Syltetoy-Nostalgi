@@ -21,6 +21,7 @@ public class KarakterKontroller : MonoBehaviour
     public float curentKameraPosisjon;
     public float lookUp;
     private float friksjon;
+    public ScoreBoardScript score;
     public WallCheckScript wallCheck;
 
     [SerializeField] private Rigidbody2D rb;

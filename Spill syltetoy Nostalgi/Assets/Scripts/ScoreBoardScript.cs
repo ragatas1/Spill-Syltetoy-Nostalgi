@@ -9,18 +9,10 @@ public class ScoreBoardScript : MonoBehaviour
     private float ny3Score;
     private float ny4Score;
     private float ny5Score;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public void LagreTid()
     {
-        if (timer.vant == true)
-        {
-            if (timer.count < PlayerPrefs.GetFloat("1Score"))
+        if (timer.count < PlayerPrefs.GetFloat("1Score"))
             {
                 ny2Score = PlayerPrefs.GetFloat("1Score");
                 PlayerPrefs.SetFloat("1Score", timer.count);
@@ -70,7 +62,6 @@ public class ScoreBoardScript : MonoBehaviour
             {
                 PlayerPrefs.SetFloat("5Score", timer.count);
             }
-        }
     }
     public void ResetScore()
     {

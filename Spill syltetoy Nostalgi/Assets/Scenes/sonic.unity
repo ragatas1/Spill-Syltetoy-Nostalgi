@@ -2451,6 +2451,10 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 2007921230}
+    - target: {fileID: 3630691685466136471, guid: fed536cbce15ad84b95e01a3d9b898e9, type: 3}
+      propertyPath: scoreboard
+      value: 
+      objectReference: {fileID: 1654874359}
     - target: {fileID: 4838364735678545743, guid: fed536cbce15ad84b95e01a3d9b898e9, type: 3}
       propertyPath: m_Size.x
       value: 0.15
@@ -2550,6 +2554,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3273065885874635832, guid: fed536cbce15ad84b95e01a3d9b898e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1654874358}
+    - targetCorrespondingSourceObject: {fileID: 3273065885874635832, guid: fed536cbce15ad84b95e01a3d9b898e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1654874359}
   m_SourcePrefab: {fileID: 100100000, guid: fed536cbce15ad84b95e01a3d9b898e9, type: 3}
 --- !u!1 &239071398
 GameObject:
@@ -15092,6 +15099,10 @@ PrefabInstance:
       value: Spiller1
       objectReference: {fileID: 0}
     - target: {fileID: 7696461025412840837, guid: db329423c84cae8498d7fa1f3e6ae350, type: 3}
+      propertyPath: score
+      value: 
+      objectReference: {fileID: 1654874359}
+    - target: {fileID: 7696461025412840837, guid: db329423c84cae8498d7fa1f3e6ae350, type: 3}
       propertyPath: topSpeed
       value: 160
       objectReference: {fileID: 0}
@@ -16412,6 +16423,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1654874359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654874354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eaf3c061b4799548b1b8740dfaa4190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: {fileID: 2007921230}
 --- !u!1 &1688192370
 GameObject:
   m_ObjectHideFlags: 0

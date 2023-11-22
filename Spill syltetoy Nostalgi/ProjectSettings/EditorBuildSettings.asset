@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/sonic.unity
+    guid: 55c93ad8a91be4e488166d533c53935f
+  - enabled: 1
+    path: Assets/Scenes/scoreboard.unity
+    guid: 6c58a4cb7eee3354f89f59c6acac0494
   m_configObjects: {}
