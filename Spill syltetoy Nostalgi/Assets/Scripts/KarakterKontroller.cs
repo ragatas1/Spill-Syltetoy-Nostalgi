@@ -10,7 +10,9 @@ public class KarakterKontroller : MonoBehaviour
     public Vector2 velocity;
     private float lagretHorizontal;
     public float speed;
+    private float fart;
     public float topSpeed;
+    public float deAkselerasjon;
     public float jumpingPower;
     private bool isFacingRight = true;
     public float luftKontroll;
@@ -135,18 +137,18 @@ public class KarakterKontroller : MonoBehaviour
         {
             velocity.x = Mathf.MoveTowards(velocity.x, 0, friksjon * Time.deltaTime);
         }
-        velocity.x += Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+        velocity.x += Input.GetAxisRaw("Horizontal") * fart * Time.deltaTime;
         velocity.x = Mathf.Clamp(velocity.x, -topSpeed, topSpeed);
         velocity.y = rb.velocity.y;
         rb.velocity = velocity;
 
         if ((velocity.x < 0 && horizontal < 0)||(velocity.x > 0 && horizontal > 0))
         {
-            friksjon = 100000;
+            fart = speed;
         }
         else
         {
-            friksjon = friction;
+            fart = deAkselerasjon;
         }
     }
 

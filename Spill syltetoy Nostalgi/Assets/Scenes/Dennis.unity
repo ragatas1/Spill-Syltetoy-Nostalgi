@@ -436,6 +436,10 @@ PrefabInstance:
       value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 7696461025412840837, guid: db329423c84cae8498d7fa1f3e6ae350, type: 3}
+      propertyPath: deAkselerasjon
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696461025412840837, guid: db329423c84cae8498d7fa1f3e6ae350, type: 3}
       propertyPath: fullLuftKontroll
       value: 1
       objectReference: {fileID: 0}
@@ -4199,6 +4203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 2127614668}
   highscoreText: {fileID: 171913947}
+  count: 0
   vant: 0
   sdfg: 0
 --- !u!1001 &8802359317728104335
