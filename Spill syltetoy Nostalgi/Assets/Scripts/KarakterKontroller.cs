@@ -18,6 +18,8 @@ public class KarakterKontroller : MonoBehaviour
     public float lowerDeadZone;
     public float curentKameraPosisjon;
     public float lookUp;
+    private float friksjon;
+    public WallCheckScript wallCheck;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -79,6 +81,15 @@ public class KarakterKontroller : MonoBehaviour
         {
             coyoteTimer = coyoteTimer -1*Time.deltaTime;
         }
+
+        if (wallCheck.iVegg == true)
+        {
+            friksjon = 100000;
+        }
+        else
+        {
+            friksjon = friction;
+        }
         //denne hopper
         if (hoppe == true && coyoteTimer>0)
         {
@@ -135,7 +146,7 @@ public class KarakterKontroller : MonoBehaviour
         //denne fikser bevegelse, med akselrasjon og deakselrasjon
         if (Input.GetAxisRaw("Horizontal") == 0)
         {
-            velocity.x = Mathf.MoveTowards(velocity.x, 0, friction * Time.deltaTime);
+            velocity.x = Mathf.MoveTowards(velocity.x, 0, friksjon * Time.deltaTime);
         }
         velocity.x += Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
         velocity.x = Mathf.Clamp(velocity.x, -topSpeed, topSpeed);
@@ -157,6 +168,7 @@ public class KarakterKontroller : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
+
 
     //denne flipper deg
     private void flip()
