@@ -10,7 +10,7 @@ public class TimerScript : MonoBehaviour
 	public TextMeshProUGUI highscoreText;
 
 	private float secondsCount;
-	private float count;
+	public float count;
 	public bool vant;
 	public float sdfg;
 

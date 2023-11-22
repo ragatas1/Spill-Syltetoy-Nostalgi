@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class KarakterKontroller : MonoBehaviour
 {
-    private float horizontal;
+    public float horizontal;
     private float kontrollerHorizontal;
     public Vector2 velocity;
     private float lagretHorizontal;
@@ -82,6 +82,7 @@ public class KarakterKontroller : MonoBehaviour
             coyoteTimer = coyoteTimer -1*Time.deltaTime;
         }
 
+        //denne reseter velocityen når du treffer en vegg
         if (wallCheck.iVegg == true)
         {
             friksjon = 100000;
@@ -122,20 +123,6 @@ public class KarakterKontroller : MonoBehaviour
             Do();
         }
         curentKameraPosisjon = transform.position.y;
-        //if (IsGrounded())
-        //{
-        //    if (curentKameraPosisjon - transform.position.y < 5 || transform.position.y - curentKameraPosisjon < 5)
-        //    {
-        //        if (curentKameraPosisjon > transform.position.y)
-        //        {
-        //            curentKameraPosisjon = curentKameraPosisjon - 100 * Time.deltaTime;
-        //        }
-        //        else
-        //        {
-        //            curentKameraPosisjon = curentKameraPosisjon + 100 * Time.deltaTime;
-        //        }
-        //    }
-        //}
 
         //denne flytter på kameraet
         kameraTransform.position = new Vector3(transform.position.x+lookAhead, curentKameraPosisjon,-10);
@@ -153,6 +140,14 @@ public class KarakterKontroller : MonoBehaviour
         velocity.y = rb.velocity.y;
         rb.velocity = velocity;
 
+        if ((velocity.x < 0 && horizontal < 0)||(velocity.x > 0 && horizontal > 0))
+        {
+            friksjon = 100000;
+        }
+        else
+        {
+            friksjon = friction;
+        }
     }
 
     //denne gjør at du dør når du kræsjer i farelayer
