@@ -31,6 +31,7 @@ public class ReachEndScript : MonoBehaviour
         timer.vant = true;
         StartCoroutine (nyScene());
         AudioManager.Play("EndSound");
+        AudioManager.Stop("Music");
     }
     IEnumerator nyScene()
     {
