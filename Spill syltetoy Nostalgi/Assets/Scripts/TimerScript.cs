@@ -14,10 +14,6 @@ public class TimerScript : MonoBehaviour
 	public bool vant;
 	public float sdfg;
 
-    private void Start()
-    {
-        OppdaterHighscore();  
-    }
     void Update()
 	{
 		UpdateTimerUI();
@@ -32,20 +28,8 @@ public class TimerScript : MonoBehaviour
 		{
 			secondsCount += Time.deltaTime;
 		}
-		else
-		{
-			if (count < PlayerPrefs.GetFloat("HighScore", 0))
-			{
-				PlayerPrefs.SetFloat("HighScore", count);
-				OppdaterHighscore();
-			}
-		}
         count = Mathf.Round(secondsCount * 10f) * 0.1f;
         timerText.text = count.ToString();
 
     }
-	void OppdaterHighscore()
-	{
-		highscoreText.text = PlayerPrefs.GetFloat("HighScore",0).ToString();
-	}
 }
