@@ -110,7 +110,7 @@ public class KarakterKontroller : MonoBehaviour
         //denne reseter velocityen når du treffer en vegg
         if (wallCheck.iVegg == true)
         {
-            friksjon = 100000;
+            friksjon = 100000000000000;
         }
         else
         {
