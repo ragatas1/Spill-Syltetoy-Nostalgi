@@ -95,6 +95,7 @@ public class KarakterKontroller : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             StartCoroutine(Hoppe());
+            AudioManager.Play("Jump");
         }
 
         //denne fikser coyote time
@@ -181,6 +182,7 @@ public class KarakterKontroller : MonoBehaviour
         if (collision.gameObject.layer == 7)
         {
             Do();
+            AudioManager.Play("Die");
         }
     }
     //denne sjekker at du er på bakken
