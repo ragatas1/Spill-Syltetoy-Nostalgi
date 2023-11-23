@@ -8,6 +8,7 @@ public class KarakterKontroller : MonoBehaviour
     public float horizontal;
     private float kontrollerHorizontal;
     public Vector2 velocity;
+    private Vector3 rotera;
     private float lagretHorizontal;
     public float speed;
     private float fart;
@@ -27,6 +28,8 @@ public class KarakterKontroller : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    public GameObject spriten;
+    public SpriteRenderer spriterender;
     public GameObject Kamera;
     public Transform kameraTransform;
     [SerializeField] private float tyngdekraft;
@@ -47,6 +50,25 @@ public class KarakterKontroller : MonoBehaviour
     }
     void Update()
     {
+        if (velocity.x >=topSpeed|| velocity.x <= -topSpeed) 
+        {
+            spriterender.color = new (1,1,1,1);
+        }
+        else
+        {
+            spriterender.color = new (0,0,0,1);
+        }
+        if ( velocity.x < 0)
+        {
+            rotera.z = velocity.x;
+            spriten.transform.Rotate(rotera * Time.deltaTime * 10);
+        }
+        else if ( velocity.x > 0)
+        {
+            rotera.z = -velocity.x;
+            spriten.transform.Rotate(rotera * Time.deltaTime * 10);
+        }
+        spriten.transform.Rotate (rotera*Time.deltaTime*10);
         //denne tar inn kontrollerinputet
         kontrollerHorizontal = Input.GetAxisRaw("Horizontal");
 
