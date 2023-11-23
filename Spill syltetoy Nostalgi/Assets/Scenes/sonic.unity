@@ -5196,7 +5196,7 @@ Transform:
   m_GameObject: {fileID: 581235545}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.20136857, w: 0.97951555}
-  m_LocalPosition: {x: 17.409512, y: -3.836333, z: 0.6}
+  m_LocalPosition: {x: 17.413712, y: -3.739664, z: 0.6}
   m_LocalScale: {x: 2.1920037, y: 2.6368818, z: 0.01485884}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13753,7 +13753,7 @@ Transform:
   m_GameObject: {fileID: 1233831365}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.20136857, w: 0.97951555}
-  m_LocalPosition: {x: 17.266802, y: -3.776669, z: -0.01485884}
+  m_LocalPosition: {x: 17.271, y: -3.68, z: -0.01485884}
   m_LocalScale: {x: 2.1920037, y: 2.6201992, z: 0.01485884}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14860,6 +14860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1361817144}
   - component: {fileID: 1361817143}
+  - component: {fileID: 1361817145}
   m_Layer: 0
   m_Name: LydSjef
   m_TagString: Untagged
@@ -14896,6 +14897,22 @@ MonoBehaviour:
     randomPitch: 0
     greaterRandomPitch: 0
     source: {fileID: 0}
+  - name: Music
+    clip: {fileID: 8300000, guid: 3f97522882b933746a8c3816514ab27f, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 1
+    randomPitch: 0
+    greaterRandomPitch: 0
+    source: {fileID: 0}
+  - name: EndSound
+    clip: {fileID: 8300000, guid: fd80d816ce75df1408dcf42444e38551, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    randomPitch: 0
+    greaterRandomPitch: 0
+    source: {fileID: 0}
 --- !u!4 &1361817144
 Transform:
   m_ObjectHideFlags: 0
@@ -14911,6 +14928,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1361817145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361817142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f0e9e3718c4e9b4e91ec7649ee68513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1395996662
 GameObject:
   m_ObjectHideFlags: 0
