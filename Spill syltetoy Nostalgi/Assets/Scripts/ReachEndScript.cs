@@ -21,6 +21,7 @@ public class ReachEndScript : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             scoreboard.ResetScore();
+            Debug.Log("resatte");
         }
     }
 

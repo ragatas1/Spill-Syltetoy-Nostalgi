@@ -16631,6 +16631,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2389068740272104010, guid: db329423c84cae8498d7fa1f3e6ae350, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2430301770396459600, guid: db329423c84cae8498d7fa1f3e6ae350, type: 3}
       propertyPath: m_Name
       value: Spiller1
@@ -20688,7 +20692,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
